@@ -11,12 +11,13 @@ public class Validator {
     // Метод, получающий в качестве параметра объект отражения некоторого класса
     // (рапечатывает информацию об ожидаемых аннотациях из исследуемого типа в консоль)
     public static void validate (Class cl) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        System.out.println("Class name: " + cl.getName());
         // Присутствует ли в описании класса аннотация ControlledObject?
         if(!cl.isAnnotationPresent(ManagedBean.class)){
             System.err.println("No ManagedBean annotation");
         } else {
             // Выводим информацию о найденной аннотации
-            System.out.println("Class is annotated ; name  -  " + cl.getAnnotation(ManagedBean.class));
+            System.out.println("The class is annotated ; name  -  " + cl.getAnnotation(ManagedBean.class));
             // получаем объект отражения самой аннотации ManagedBean
             Class<?> managedBeanClass = ManagedBean.class;
             // из отражения аннотации получаем отражение метода (свойство) name
@@ -48,5 +49,6 @@ public class Validator {
         }
         // Выводим в консоль отчет о найденных или не найденных аннотациях методов
         System.out.println("Getter annotation  - " + hasGetter + ";  Setter annotation  - " + hasSetter );
+        System.out.println("*** End ***");
     }
 }
